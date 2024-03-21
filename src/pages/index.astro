@@ -2,12 +2,15 @@
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 
+import Selector from '../components/Selector.tsx';
+import ReadForm from '../components/ReadForm.astro';
+
 import { db, User } from 'astro:db';
 const users = await db.select().from(User);
 ---
 
-<Layout title="Welcome to Astro.">
-	<main> 
+<Layout title="astro:db Playground">
+	<main class="flex min-h-screen flex-col items-center justify-between p-24"> 
 		<svg
 			class="astro-a"
 			width="495"
@@ -36,12 +39,15 @@ const users = await db.select().from(User);
 				</linearGradient>
 			</defs>
 		</svg>
-		{
-			users.map(({ userName, userScore}) => (
-				<p> {userName} has a score of {userScore} </p>
+		<div class="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex flex-col">
+			<h1 class="text-xl font-bold text-center lg:text-3xl">
+			  Welcome to the astro:db App
+			</h1>
 			
-			))
-		}
+		</div>
+
+		<ReadForm />
+
 	</main>
 </Layout>
 
